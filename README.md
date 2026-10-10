@@ -4,6 +4,9 @@ An AI-powered resume analysis tool that evaluates how well a resume matches a ta
 
 Upload a resume in **PDF or DOCX format**, provide a job description, and receive AI-generated feedback to help identify skill gaps, missing keywords, and areas for improvement.
 
+Access the tool at:
+https://ai-resume-analyzer-virid-tau.vercel.app/
+
 ## Features
 
 - **Resume Parsing:** Upload resumes in PDF or DOCX format for text extraction and analysis.
