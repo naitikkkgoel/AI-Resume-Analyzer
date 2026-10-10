@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "DM Sans", sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #0a0e1f;
+  color: #eef1ff;
+  font-family: var(--font-sans);
+}
+
+/* The glass effect: translucent fill + blur of whatever is behind + light edge */
+.glass {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 10px 40px rgba(2, 4, 20, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.glass-inset {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Slow drifting colour blobs behind the glass */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.08); }
+}
+.orb { animation: drift 18s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .orb { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}
