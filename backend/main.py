@@ -1,6 +1,7 @@
 import logging
 import tempfile
 from pathlib import Path
+import os
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -16,10 +17,16 @@ MAX_BYTES = 5 * 1024 * 1024  # 5 MB
 
 app = FastAPI(title="Resume Analyser API")
 
+origins = ["http://localhost:5173", "http://127.0.0.1:5173"]
+frontend_url = os.getenv("FRONTEND_URL")
+if frontend_url:
+    origins.append(frontend_url.rstrip("/"))
+
+
 # Lets the React dev server (port 5173) call this API from the browser.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
